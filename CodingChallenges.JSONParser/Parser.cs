@@ -15,14 +15,15 @@
             _currentLocation = 0;
 
             var tokens = _lexer.Tokenise(jsonString);
-            //todo: check first token is {
+            if (tokens.Count is 0) return false;
+
             return IsValidObject(tokens, 0);
         }
 
         private bool IsValidObject(List<Token> tokens, int currentPosition)
         {
-            if (tokens.Count is 0) return false;
             if (_currentLocation == tokens.Count - 1) return false;
+            if (tokens[currentPosition].TokenType is not TokenType.OpenCurlyBracket) return false;
 
             ++currentPosition;
             while (currentPosition < tokens.Count)
