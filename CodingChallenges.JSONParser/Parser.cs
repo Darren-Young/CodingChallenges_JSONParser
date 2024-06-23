@@ -15,6 +15,7 @@
             _currentLocation = 0;
 
             var tokens = _lexer.Tokenise(jsonString);
+            //todo: check first token is {
             return IsValidObject(tokens, 0);
         }
 
@@ -52,6 +53,8 @@
 
         private bool IsValidKeyValuePair(List<Token> tokens, int currentPosition)
         {
+            if (currentPosition + 2 >= tokens.Count) return false;
+
             var expectedColon = tokens[currentPosition + 1];
             var expectedValue = tokens[currentPosition + 2];
 
