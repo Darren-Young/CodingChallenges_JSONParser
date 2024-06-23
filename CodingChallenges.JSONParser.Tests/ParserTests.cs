@@ -41,5 +41,32 @@
 
             Assert.False(isValid);
         }
+
+        [Test]
+        public void IsValidJoin_WithConsecutiveCommas_ReturnsFalse()
+        {
+            var parser = new Parser();
+            var isValid = parser.IsValidJSON("{\"darren\":\"Young\",,\"Kailey\":\"Ashurst\"}");
+
+            Assert.False(isValid);
+        }
+
+        [Test]
+        public void IsValidJson_WithTrailingComma_ReturnsFalse()
+        {
+            var parser = new Parser();
+            var isValid = parser.IsValidJSON("{\"darren\":\"Young\",,\"Kailey\":\"Ashurst\",}");
+
+            Assert.False(isValid);
+        }
+
+        [Test]
+        public void IsValidJson_WithValidJson_ReturnsTrue()
+        {
+            var parser = new Parser();
+            var isValid = parser.IsValidJSON("{\"darren\":\"Young\",\"Kailey\":\"Ashurst\"}");
+
+            Assert.True(isValid);
+        }
     }
 }

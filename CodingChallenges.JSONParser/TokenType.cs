@@ -3,6 +3,9 @@
     public enum TokenType
     {
         OpenCurlyBracket,
-        CloseCurlyBracket
+        CloseCurlyBracket,
+        StringLiteral,
+        Colon,
+        Comma
     }
 }
